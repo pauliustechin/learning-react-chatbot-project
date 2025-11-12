@@ -6,13 +6,31 @@
   <body>
     <div class="js-container"></div>
 
+    <!-- add external library -->
+    <!-- <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script> -->
+
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+
+      const button = <button>hello</button>;
+      const paragraph = <p>paragraph of text</p>
+
+      // put html on it's own line between ()
+      const div = (
+        <div>
+        <button>hello</button>
+        <p>paragraph of text {2 + 2}</p>
+        </div>
+      );
+      // sukuriam conteineri, o po to viska desime i js-container div elementa.
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render('Welcome to SuperSimpleDev React Course');
+      // ReactDOM.createRoot(container).render('Welcome to SuperSimpleDev React Course');
+      // ReactDOM.createRoot(container).render(button);
+      // ReactDOM.createRoot(container).render(paragraph);
+      ReactDOM.createRoot(container).render(div);
     </script>
   </body>
 </html>
