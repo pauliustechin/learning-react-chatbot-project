@@ -22,7 +22,18 @@
         setInputText(event.target.value);
       }
 
-      function sendMessage() {
+      function checkInput(event) {
+        if (event.key === 'Enter' && inputText !== 'Loading...' && inputText !== '') {
+          sendMessage();
+        } else if (event.key === 'Escape') {
+          setInputText('');
+        } else if (inputText !== 'Loading...' && inputText !== '' && !event.key) {
+          sendMessage();
+        }
+      }
+
+      async function sendMessage() {
+
         const newChatMessages = [
           ...chatMessages,
           {
@@ -32,9 +43,9 @@
           }
         ]
 
-        setChatMessages(newChatMessages);
+        setInputText('Loading...');
 
-        const response = Chatbot.getResponse(inputText);
+        const response = await Chatbot.getResponseAsync(inputText);
 
         setChatMessages([
           ...newChatMessages,
@@ -43,7 +54,8 @@
             sender: 'robot',
             id: crypto.randomUUID()
           }
-        ]);
+        ]
+        );
 
         setInputText('');
       }
@@ -55,10 +67,11 @@
             placeholder="Send a message to Chatbot"
             size="30"
             onChange={saveInputText}
+            onKeyDown={checkInput}
             value={inputText}
           />
           <button
-            onClick={sendMessage}
+            onClick={checkInput}
           >Send</button>
         </>
 
