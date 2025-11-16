@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chatbot</title>
+</head>
+<style>
+  /* 1 DALIS */
+  /* .btn-on {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-off {
+    background-color: rgb(220, 53, 69);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  } */
+
+  /* 2 DALIS */
+  /* .para {
+    font-family: arial;
+    font-size: 1.5rem;
+  }
+
+  input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(207, 204, 204);
+  }
+
+  button {
+    background-color: rgb(0, 123, 255);
+    padding: 10px;
+    margin: 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+</style>
+
+<body>
+  <div class="js-container"></div>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+  <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel">
+
+
+    function App() {
+      const [timeSec, setTimeSec] = React.useState(dayjs().format('HH:mm:ss'));
+
+      React.useEffect(() => {
+        setInterval(() => {
+          setTimeSec(dayjs().format('HH:mm:ss'))
+          console.log('run')
+        }, 1000);
+      }, [setTimeSec]);
+
+      return (
+        <>
+          <p>
+            Current time: {timeSec}
+          </p>
+        </>
+      )
+    }
+
+
+    // ANTRA DALIS
+    // function LoginForm() {
+    //   const [showPassword, setShowPassword] = React.useState(true);
+
+    //   function showPass() {
+    //     if (showPassword) {
+    //       setShowPassword(false);
+    //     } else {
+    //       setShowPassword(true);
+    //     }
+    //   }
+
+    //   return (
+    //     <>
+    //       <p
+    //         className="para"
+    //       >Hello to my website!</p>
+    //       <div><input placeholder="Email" /></div>
+    //       <div>
+    //         <input placeholder="Password" type={(showPassword) ? "password" : "text"} />
+    //         <button
+    //           onClick={showPass}
+    //         >{(showPassword) ? "Show" : "Hide"}</button>
+    //       </div>
+    //       <button>Login</button>
+    //       <button>Signup</button>
+    //     </>
+    //   )
+    // }
+
+    // function App() {
+
+    //   return (
+    //     <>
+    //       <LoginForm />
+    //     </>
+    //   )
+    // }
+
+
+
+
+    // PIRMA DALIS
+    // function Button() {
+    //   const [isButtonOn, setIsButtonOn] = React.useState(true)
+
+    //   function clickedBtn() {
+    //     if (isButtonOn) {
+    //       console.log(isButtonOn);
+    //       setIsButtonOn(false);
+    //     } else {
+    //       setIsButtonOn(true);
+    //     }
+    //   }
+
+    //   return (
+    //     <>
+    //       <button
+    //         className={(isButtonOn ? "btn-on" : "btn-off")}
+    //         onClick={clickedBtn}
+    //       >{(isButtonOn ? "ON" : "OFF")}</button>
+    //     </>
+    //   )
+    // }
+
+
+    // function App() {
+    //   return (
+    //     <>
+    //       <Button />
+    //     </>
+    //   )
+
+    // }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />)
+
+  </script>
+</body>
+
+</html>

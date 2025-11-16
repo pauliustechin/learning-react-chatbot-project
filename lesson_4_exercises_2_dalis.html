@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chatbot</title>
+</head>
+<style>
+  body {
+    margin: 0;
+  }
+  button {
+    padding: 10px;
+    margin: 5px;
+    background-color: rgb(63, 130, 218);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(222, 222, 222);
+  }
+</style>
+
+<body>
+  <div class="js-container"></div>
+
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+  <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+  <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+  <script type="text/babel">
+  
+  
+  let autoPlay = true;
+
+ let interval_id = 0;  
+
+  function App() {
+      const [click, setClick] = React.useState(0);
+      const buttonRef = React.useRef();
+
+      function counter(event) {
+        const clickAction = event.target.value
+
+        if (clickAction === 'reset') {
+          setClick(0)
+        } else {
+          setClick(click + 1)
+        }
+      }
+
+      function autoClick() {
+        
+        if (autoPlay) {
+          autoPlay = false;
+          console.log(autoPlay);
+          interval_id = setInterval(() => {
+            console.log(interval_id);
+            const buttonElem = buttonRef.current;
+            if (buttonElem) {
+              buttonElem.click();
+            }
+          }, 1000)
+        } else {
+          console.log(interval_id);
+          clearInterval(interval_id);
+          autoPlay = true;
+          console.log(autoPlay);
+        }
+      }
+
+
+
+      return (
+        <div
+        className="container"
+        >
+          <button
+            onClick={counter}
+            value={'click'}
+            ref={buttonRef}
+          >Clicked {click} times</button>
+          <button
+            onClick={counter}
+            value={'reset'}
+          >Reset</button>
+          <button
+            onClick={autoClick}
+          >Auto Click</button>
+        </div>
+      )
+    }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />)
+
+  </script>
+</body>
+
+</html>
